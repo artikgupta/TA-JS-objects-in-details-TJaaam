@@ -30,50 +30,55 @@ return options[correctAnswerIndex]
 
 - Organize using object
 
-let info = {
+let question = {
 title:"Where is the capital of Jordan",
 options:["Tashkent", "Amaan", "Kuwait City", "Nairobi"],
 correctAnswerIndex:1,
 
-function isAnswerCorrect(i){
-return corretAnswerIndex === i;
+isAnswerCorrect(i){
+return corretAnswerIndex === question.correctAnswerIndex;
 }
 
-function getCorrectAnswer(){
-return options[isAnswerCorrect]
+getCorrectAnswer(){
+return question.options[question.correctAnswerIndex]
 }
 
 }
 
 - Use a function to create object
 
-function QuizApp(){
+function createQuestion(title,options,correctAnswerIndex){
 
-let obj = object.create(methods)
+let question ={}
 
-obj.title = title;
-obj.options = options;
-obj.correctAnswerIndex = index;
-return obj
+question.title = title;
+question.options = options;
+question.correctAnswerIndex = index;
+question.isAnswerCorrect= function(i){
+return i === question.correctAnswerIndex;
+}
+question.getCorrectAnswer(){
+return options[question.correctAnswerIndex]
+}
+return question
 }
 
 - Convert the function to use `this` keyword
 
-function QuizApp(title, options,correctAnswerIndex ){
+function createQuestion(title,options,correctAnswerIndex){
 
-let obj ={
-title:title,
-options:options,
-correctAnswerIndex:correctAnswerIndex,
-isAnswerCorrect: function(i) {
-return this.corretAnswerIndex === i;
-},
-getCorrectAnswer: function(){
-return this.options[this.correctAnswerIndex];
-},
+let question ={}
 
+question.title = title;
+question.options = options;
+question.correctAnswerIndex = index;
+question.isAnswerCorrect= function(i){
+return i === this.correctAnswerIndex;
 }
-return obj
+question.getCorrectAnswer(){
+return this.options[this.correctAnswerIndex]
+}
+return question
 }
 
 let app = QuizApp(title, options, correctAnswerIndex)
