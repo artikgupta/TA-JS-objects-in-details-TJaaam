@@ -55,8 +55,8 @@ class Square {
   }
 
   get area() {
-    if (this.numberOfTimes < 4) {
-      this.numberOfTimes += 1;
+    this.numberOfTimes += 1;
+    if (this.numberOfTimes >= 4) {
       return this.calcArea();
     }
   }
@@ -83,12 +83,12 @@ class User {
   get fullName() {
     return this.firstName + this.lastName;
   }
-  set fullName(fullName) {
-    if (fullName.length <= 5) {
+  set fullName(name) {
+    if (name.length <= 5) {
       return "Full name should be more than 5 characters";
     } else {
-      this.firstName = fullName.split(" ")[0];
-      this.lastName = fullName.split(" ")[1];
+      this.firstName = name.split(" ")[0];
+      this.lastName = name.split(" ")[1];
     }
   }
   nameContains(str) {
