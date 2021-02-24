@@ -126,4 +126,5 @@ class Dog extends Animal {
       summary() {
         return `I am ${this.name} and the color of my eyes are ${this.colorOfEyes}. I can also do meow meow`;
       }
-}
+
+    }
