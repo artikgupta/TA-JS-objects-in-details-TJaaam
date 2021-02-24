@@ -25,6 +25,8 @@ let dogMethods = {
   },
 };
 
+Object.setPrototypeOf(dogMethods, animalMethods);
+
 let catMethods = {
   meow: function () {
     alert(`I am ${this.name} and I can do mewo meow 😹`);
@@ -42,19 +44,26 @@ let catMethods = {
   },
 };
 
-function AnimalInfo(location, numberOfLegs) {
+Object.setPrototypeOf(catMethods, animalMethods);
+
+function animalInfo(location, numberOfLegs) {
   let animal = Object.create(amimalMethods);
   animal.location = location;
   animal.numberOfLegs = numberOfLegs;
+  return animal;
 }
 
-function Dog(name, color) {
-  let dogs = Object.setPrototypeOf(dogMethods, amimalMethods);
+function Dog(location, numberOfLegs, name, color) {
+  let dogs = animalInfo(location, numberOfLegs);
+  Object.setPrototypeOf(dogs, dogMethods);
   dogs.name = name;
   dogs.color = color;
+  return dogs;
 }
 
-function Cat(name, colorOfEyes) {
+function Cat(location, numberOfLegs, name, colorOfEyes) {
+  let cats = animalInfo(location, numberOfLegs);
+  Object.setPrototypeOf(cats, dogMethods);
   let cats = Object.create(catMethods, amimalMethods);
   cats.name = name;
   cats.colorOfEyes = colorOfEyes;
