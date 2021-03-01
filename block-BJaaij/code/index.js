@@ -24,23 +24,33 @@ class BookList extends Book {
     this.allBooks = this.allBooks.concat(arr);
   }
 
-  getCurrentBook(i) {
+  getCurrentBook() {
     return this.allBooks[this.currentIndex];
   }
 
-  getNextBook(i) {
-    return this.allBooks[this.currentIndex + 1];
+  getNextBook() {
+    this.currentIndex = this.currentIndex + 1;
+    return (
+      this.allBooks[this.currentIndex] ||
+      this.allBooks[this.allBooks.length - 1]
+    );
   }
 
-  getPrevBook(i) {
-    return this.allBooks[this.currentIndex - 1];
+  getPrevBook() {
+    this.currentIndex = this.currentIndex - 1;
+    return this.allBooks[this.currentIndex] || this.allBooks[0];
   }
 
   changeCurrentBook(i) {
-    return (this.changeCurrentBook = i);
+    this.currentIndex = i;
+    return this.currentIndex;
   }
 }
 
-let book1 = new Book("abc", "suspense", "AAA", true, new Date());
+let book1 = new Book("abc", "horror", "AAA", true, new Date());
+let book1 = new Book("def", "detective", "BBB", false, new Date());
+let book1 = new Book("ghi", "fantasy", "CCC", false, new Date());
+let book1 = new Book("jkl", "classic", "DDD", true, new Date());
+let book1 = new Book("mno", "comedy", "EEE", true, new Date());
 
 console.log(book1);
